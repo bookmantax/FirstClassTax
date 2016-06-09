@@ -24,6 +24,11 @@ import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 /**
  * Created by RAE on 3/30/16.
  */
+
+// TODO: Create a new layout for address with autocomplete and form validation,
+// TODO: http://stacktips.com/tutorials/android/editText-validation-in-android-example
+// TODO: Launch UserAddress when click on Address EditText
+
 public class AddUserInfo extends AppCompatActivity implements View.OnClickListener{
 
 

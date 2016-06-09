@@ -11,6 +11,9 @@ import android.widget.Toast;
 /**
  * Created by Rodrigo on 5/14/2016.
  */
+
+// TODO : Compare locations or create a Geofence, http://stackoverflow.com/questions/18170131/comparing-two-locations-using-their-longitude-and-latitude
+
 public class LocationManager extends Activity {
 
 

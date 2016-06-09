@@ -23,6 +23,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.util.Calendar;
 
+// TODO: Move EditUser Info to Options Menu
 
 public class MainActivity extends AppCompatActivity {
 

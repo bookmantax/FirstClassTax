@@ -152,6 +152,17 @@
             </intent-filter>
         </activity>
 
+        // New Activity UserAddress
+        <activity
+            android:name=".UserAddress"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="com.firstclasstax.UserAddress" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         // New Activity DepartingDate
 
         <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
@@ -164,7 +175,7 @@
             android:value="AIzaSyBGuGniN3Ubhj43EpNgmu87HUEEMlMHBL0"/>
 
         <service android:name=".LocationService" android:process=":location_service"/>
-        <service android:name=".GeofenceTransitionsIntentService" />
+
 
     </application>
 </manifest>

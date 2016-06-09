@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:aandroid="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
@@ -31,6 +33,9 @@
         android:id="@+id/edit_Address_EditText"
         android:layout_gravity="center_horizontal"
         android:text="Address"
+        android:focusable="false"
+        android:clickable="true"
+        android:onClick="OnClickEditTextListenerSave"
         android:textStyle="bold" />
 
     <EditText
@@ -41,14 +46,14 @@
         android:text="Airline Employer"
         android:textStyle="bold" />
 
-    <EditText
-        android:layout_width="296dp"
-        android:layout_height="wrap_content"
-        android:ems="5"
+    <fragment
         android:id="@+id/edit_Base_EditText"
-        android:layout_gravity="center_horizontal"
-        android:text="Home Airport"
-        android:textStyle="bold" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="City"
+        android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
+        />
+
 
     <EditText
         android:layout_width="296dp"

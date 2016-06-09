@@ -4,17 +4,15 @@
  */
 package com.firstclasstax;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ExpandableListView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.Status;
@@ -34,10 +32,12 @@ public class EditUserInfo extends AppCompatActivity implements View.OnClickListe
     DatabaseHelper db = new DatabaseHelper(this);
     EditText edit_Name_EditText, edit_Address_EditText, edit_Employer_EditText, edit_Base_EditText,
              edit_Email_EditText, edit_Phone_EditText ;
-    public static final String TAG = PerDiemSearch.class.getSimpleName();
     Cursor cursor;
     int pos;
     private final String USER_TABLE_NAME = "user_info_table";
+    PlaceAutocompleteFragment autocompleteFragment;
+    public static final String TAG = PerDiemSearch.class.getSimpleName();
+    String cityName = " ", address = " ";
 
 
     @Override
@@ -48,13 +48,22 @@ public class EditUserInfo extends AppCompatActivity implements View.OnClickListe
         // On Click Listener for buttons interaction
         OnClickButtonListenerSave();
         OnClickButtonListenerCancel();
+        OnClickEditTextListenerSave();
+
+        Intent intentExtras = getIntent();
+        Bundle extrasBundle = intentExtras.getExtras();
+        if (extrasBundle != null) {
+            address = (extrasBundle.getString(String.valueOf(extrasBundle)));
+        }
+
 
 
         //Initialize EditText Variables
         edit_Name_EditText = (EditText) findViewById(R.id.edit_Name_EditText);
         edit_Address_EditText = (EditText) findViewById(R.id.edit_Address_EditText);
         edit_Employer_EditText = (EditText) findViewById(R.id.edit_Employer_EditText);
-        edit_Base_EditText = (EditText) findViewById(R.id.edit_Base_EditText);
+//        edit_Base_EditText = (EditText) findViewById(R.id.edit_Base_EditText);
+        String base = cityName.toString();
         edit_Email_EditText = (EditText) findViewById(R.id.edit_Email_EditText);
         edit_Phone_EditText = (EditText) findViewById(R.id.edit_Phone_EditText);
 
@@ -88,8 +97,65 @@ public class EditUserInfo extends AppCompatActivity implements View.OnClickListe
                 }
             }
         }
-    }
+        ///////////////////////////////////////////////////////////////////////////////////////////////
+        autocompleteFragment = (PlaceAutocompleteFragment)
+                getFragmentManager().findFragmentById(R.id.edit_Base_EditText);
 
+    /*
+    * The following code example shows setting an AutocompleteFilter on a PlaceAutocompleteFragment to
+    * set a filter returning only results with a precise address.
+    */
+        AutocompleteFilter typeFilter = new AutocompleteFilter.Builder()
+                .setTypeFilter(AutocompleteFilter.TYPE_FILTER_CITIES)
+                .build();
+        autocompleteFragment.setFilter(typeFilter);
+
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(Place place) {
+                // TODO: Get info about the selected place.
+//                Log.i(TAG, "Place: " + place.getName());//get place details here
+////                cityName = place.getAddress().toString();
+
+                // https://developers.google.com/places/web-service/autocomplete#location_biasing
+
+                cityName = place.getAddress().toString();
+
+
+            }
+
+            @Override
+            public void onError(Status status) {
+                // TODO: Handle the error.
+                Log.i(TAG, "An error occurred: " + status);
+            }
+        });
+        //////////////////////////////////////////////////////////////////////////////////////////////
+    }
+////////////////////////////////////////////////////////////////////////////////
+
+public void OnClickEditTextListenerSave() {
+    EditText clickable_EditText = (EditText) findViewById(R.id.edit_Address_EditText);
+    clickable_EditText.setOnClickListener(
+            new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(EditUserInfo.this, UserAddress.class);
+                    startActivity(intent);
+                    finish();
+                }
+            });
+}
+////////////////////////////////////////////////////////////////////////////////
+
+
+    // TODO: http://stackoverflow.com/questions/5771044/android-start-activity-when-edittext-is-clicked
+//    public void onEditTextClick(View arg0)
+    public void onEditTextClick()
+    {
+        Intent intent = new Intent(EditUserInfo.this, UserAddress.class);
+        startActivity(intent);
+    }
 
     @Override
     public void onClick(View v) {
@@ -105,6 +171,7 @@ public class EditUserInfo extends AppCompatActivity implements View.OnClickListe
 
 
                         // Call of the method Validate to check if EditText are empty
+                        String base = cityName.toString();
                         boolean fieldsOK = validate(new EditText[]{
                                 edit_Name_EditText,
                                 edit_Address_EditText,
@@ -172,6 +239,8 @@ public class EditUserInfo extends AppCompatActivity implements View.OnClickListe
                 }
         );
     }
+
+
 /*
     // Options menu to shout about info
     @Override

@@ -16,6 +16,9 @@ import java.util.Date;
 /**
  * Created by Brandon on 6/6/2016.
  */
+
+    // TODO : Use AlarmManager to monitor location every 15 minutes, https://developer.android.com/reference/android/app/AlarmManager.html
+
 public class LocationService extends Service{
     private static final String TAG = "FIRSTCLASSTAXGPS";
     private LocationManager mLocationManager = null;
