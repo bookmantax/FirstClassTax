@@ -4,14 +4,10 @@
  */
 package com.firstclasstax;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,14 +17,13 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
-import java.util.Calendar;
-
-// TODO: Move EditUser Info to Options Menu
 
 public class MainActivity extends AppCompatActivity {
 
     // Variables
     private static Button button_sbm;
+    // Options Menu Variables
+    private static final int EDIT_PROFILE = Menu.FIRST + 1;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -39,21 +34,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
 
-        Calendar cur_cal = Calendar.getInstance();
-        cur_cal.setTimeInMillis(System.currentTimeMillis());
-        Intent intent = new Intent(this, LocationService.class);
-        PendingIntent pi = PendingIntent.getService(this, 0, intent, 0);
-        AlarmManager alarm_manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        alarm_manager.setRepeating(AlarmManager.RTC, cur_cal.getTimeInMillis(), (1000 * 60 * 60 * 2),  pi);
 
         OnClickButtonListenerCurrentTrip();
         OnClickButtonListenerViewTripHistory();
         OnClickButtonListenerTaxDeductionsToDate();
         OnClickButtonListenerPerDiemSearch();
-        OnClickButtonListenerEditUserInfo();
+        OnClickButtonListenerSpeedManager();
+
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -116,14 +104,14 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 
-    // View Trip History Listener
-    public void OnClickButtonListenerEditUserInfo() {
-        button_sbm = (Button) findViewById(R.id.main_Menu_Edit_Btn);
+    // Per Diem Search Listener
+    public void OnClickButtonListenerSpeedManager() {
+        button_sbm = (Button) findViewById(R.id.main_Menu_Speed_Btn);
         button_sbm.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent("com.firstclasstax.EditUserInfo");
+                        Intent intent = new Intent("com.firstclasstax.SpeedManager");
                         startActivity(intent);
                     }
                 }
@@ -169,5 +157,28 @@ public class MainActivity extends AppCompatActivity {
         );
         AppIndex.AppIndexApi.end(client, viewAction);
         client.disconnect();
+    }
+
+    // Options menu to shout about info
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add(Menu.NONE, EDIT_PROFILE, Menu.NONE, "Edit Profile").setAlphabeticShortcut('e');
+        return (super.onCreateOptionsMenu(menu));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case EDIT_PROFILE:
+                Edit_Profile();
+                return (true);
+        }
+
+        return (super.onOptionsItemSelected(item));
+    }
+
+    private void Edit_Profile() {
+        Intent intent = new Intent("com.firstclasstax.EditUserInfo");
+        startActivity(intent);
     }
 }

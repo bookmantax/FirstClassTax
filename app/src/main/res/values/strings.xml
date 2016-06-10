@@ -8,5 +8,7 @@
     <string name="hello_world">Hello World</string>
     <string name="Add_User_Info">Profile</string>
     <string name="Clear_Fields"></string>
+    <string name="about">About</string>
+    <string name="close">Close</string>
 
 </resources>

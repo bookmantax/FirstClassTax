@@ -64,4 +64,16 @@
         android:layout_alignEnd="@+id/main_Menu_Search_Btn"
         android:layout_margin="2dp" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Speed"
+        android:id="@+id/main_Menu_Speed_Btn"
+        android:textSize="25dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_below="@+id/main_Menu_Edit_Btn"
+        android:layout_alignStart="@+id/main_Menu_Edit_Btn"
+        android:layout_alignEnd="@+id/main_Menu_Edit_Btn" />
+
 </RelativeLayout>

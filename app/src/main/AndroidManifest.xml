@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
         android:allowBackup="true"
@@ -152,12 +154,12 @@
             </intent-filter>
         </activity>
 
-        // New Activity UserAddress
+        // New Activity AddTrip
         <activity
-            android:name=".UserAddress"
+            android:name=".SpeedManager"
             android:theme="@style/AppTheme">
             <intent-filter>
-                <action android:name="com.firstclasstax.UserAddress" />
+                <action android:name="com.firstclasstax.SpeedManager" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:aandroid="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -12,8 +12,11 @@
         android:text="Edit User Info"
         android:id="@+id/textView"
         android:layout_gravity="center_horizontal"
-        android:layout_margin="10dp"
-        android:textSize="50dp" />
+        android:textSize="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="296dp"
@@ -23,7 +26,11 @@
         android:ems="5"
         android:id="@+id/edit_Name_EditText"
         android:layout_gravity="center_horizontal"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_marginLeft="88dp"
+        android:layout_marginTop="37dp"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="296dp"
@@ -32,11 +39,11 @@
         android:ems="5"
         android:id="@+id/edit_Address_EditText"
         android:layout_gravity="center_horizontal"
-        android:text="Address"
-        android:focusable="false"
-        android:clickable="true"
-        android:onClick="OnClickEditTextListenerSave"
-        android:textStyle="bold" />
+        android:hint="Address"
+        android:textStyle="bold"
+        android:layout_marginLeft="88dp"
+        android:layout_below="@+id/edit_Name_EditText"
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="296dp"
@@ -44,16 +51,36 @@
         android:id="@+id/edit_Employer_EditText"
         android:layout_gravity="center_horizontal"
         android:text="Airline Employer"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_marginLeft="88dp"
+        android:layout_below="@+id/edit_Address_EditText"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:textStyle="bold"
+        android:hint="Base City"
+        android:id="@+id/edit_Base_EditText"
+        android:layout_marginLeft="0dp"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/edit_Email_EditText"
+        android:focusable="true" />
 
     <fragment
-        android:id="@+id/edit_Base_EditText"
-        android:layout_width="match_parent"
+        android:id="@+id/edit_Base_Fragment"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="right"
         android:hint="City"
+        android:textStyle="bold"
         android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
-        />
-
+        android:layout_marginLeft="625dp"
+        android:layout_alignEnd="@+id/textView"
+        android:layout_alignTop="@+id/edit_Base_EditText"
+        android:layout_alignBottom="@+id/edit_Base_EditText" />
 
     <EditText
         android:layout_width="296dp"
@@ -63,7 +90,11 @@
         android:id="@+id/edit_Email_EditText"
         android:layout_gravity="center_horizontal"
         android:text="Email"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_marginLeft="88dp"
+        android:layout_marginBottom="192dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="296dp"
@@ -73,13 +104,32 @@
         android:id="@+id/edit_Phone_EditText"
         android:layout_gravity="center_horizontal"
         android:text="Phone"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_marginLeft="88dp"
+        android:layout_marginTop="36dp"
+        android:layout_alignTop="@+id/edit_Email_EditText"
+        android:layout_centerHorizontal="true" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:spinnerMode="dropdown"
+        android:layout_marginLeft="0dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="797dp" />
 
     <RelativeLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="0dp"
+        android:layout_below="@+id/edit_Phone_EditText"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="54dp">
 
         <Button
             android:layout_width="wrap_content"
@@ -102,7 +152,7 @@
             android:layout_toStartOf="@+id/edit_cancel_btn"
             android:layout_marginEnd="48dp" />
 
-
     </RelativeLayout>
 
-</LinearLayout>
+
+</RelativeLayout>

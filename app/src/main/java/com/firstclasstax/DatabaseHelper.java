@@ -266,6 +266,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result != -1;
     } // end of insertData
 
+//    /*
+// * Add data to the DataBase
+// */
+//    public boolean insertAddress(String address) {
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        ContentValues contentValues = new ContentValues();
+//        contentValues.put(ADDRESS, address);
+//        // to check if data was inserted
+//        long result = db.insert(USER_TABLE_NAME, null, contentValues);
+//        return result != -1;
+//    } // end of insertData
+
     /*
     * Add trip to the Database
     */
@@ -298,7 +310,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor result = db.rawQuery("SELECT * FROM " + AIRPORTS_TABLE_NAME + " WHERE AIRPORT_CITY LIKE '" + searchValue + "%'", null);
         return result;
     } // End of getAirportsInfo
-
+//    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//	/*
+//     * Pulls all cities from the DataBase Airports table. and assign it to the variable result
+//     */
+//    public Cursor getAirportsCity() {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        Cursor result = db.rawQuery("SELECT * FROM " + AIRPORTS_TABLE_NAME + " WHERE AIRPORT_CITY", null);
+//        return result;
+//    } // End of getAirportsInfo
+//    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     /*
      * Pulls all data from the DataBase table. and assign it to the variable result
