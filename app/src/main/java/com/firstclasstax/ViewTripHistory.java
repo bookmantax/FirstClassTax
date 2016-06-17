@@ -12,9 +12,6 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-/**
- * Created by RAE on 3/30/16.
- */
 public class ViewTripHistory extends AppCompatActivity implements View.OnClickListener{
 
     private ListView list;
@@ -30,7 +27,6 @@ public class ViewTripHistory extends AppCompatActivity implements View.OnClickLi
         list = (ListView)findViewById(R.id.tripListView);
         trips = new ArrayList<>();
         tripsReversed = new ArrayList<>();
-        //trips.add(new TripItem("miami", "2/2/2016 - 2/3/2016", "$200"));
         Cursor cursor = db.getAllTrips();
         if(!db.isTripsEmpty()) {
             cursor.moveToFirst();

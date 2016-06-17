@@ -4,10 +4,17 @@
  */
 package com.firstclasstax;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +24,8 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import java.util.Calendar;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     private static Button button_sbm;
     // Options Menu Variables
     private static final int EDIT_PROFILE = Menu.FIRST + 1;
+    private static final int ABOUT = Menu.FIRST + 2;
+
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -34,14 +45,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 
+        Calendar cur_cal = Calendar.getInstance();
+        cur_cal.setTimeInMillis(System.currentTimeMillis());
+        Intent intent = new Intent(this, LocationService.class);
+        PendingIntent pi = PendingIntent.getService(this, 0, intent, 0);
+        AlarmManager alarm_manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        alarm_manager.setRepeating(AlarmManager.RTC, cur_cal.getTimeInMillis(), (1000 * 60 * 60 * 2),  pi);
 
         OnClickButtonListenerCurrentTrip();
         OnClickButtonListenerViewTripHistory();
         OnClickButtonListenerTaxDeductionsToDate();
         OnClickButtonListenerPerDiemSearch();
         OnClickButtonListenerSpeedManager();
-
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -104,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 
-    // Per Diem Search Listener
+    // View Trip History Listener
     public void OnClickButtonListenerSpeedManager() {
         button_sbm = (Button) findViewById(R.id.main_Menu_Speed_Btn);
         button_sbm.setOnClickListener(
@@ -163,6 +181,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add(Menu.NONE, EDIT_PROFILE, Menu.NONE, "Edit Profile").setAlphabeticShortcut('e');
+        menu.add(Menu.NONE, ABOUT, Menu.NONE, "About").setAlphabeticShortcut('?');
         return (super.onCreateOptionsMenu(menu));
     }
 
@@ -172,6 +191,9 @@ public class MainActivity extends AppCompatActivity {
             case EDIT_PROFILE:
                 Edit_Profile();
                 return (true);
+            case ABOUT:
+                about();
+                return (true);
         }
 
         return (super.onOptionsItemSelected(item));
@@ -180,5 +202,20 @@ public class MainActivity extends AppCompatActivity {
     private void Edit_Profile() {
         Intent intent = new Intent("com.firstclasstax.EditUserInfo");
         startActivity(intent);
+    }
+    private void about() {
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View addView = inflater.inflate(R.layout.about, null);
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.about)
+                .setView(addView)
+                .setNegativeButton(R.string.close,
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,
+                                                int whichButton) {
+                                // ignore, just dismiss
+                            }
+                        })
+                .show();
     }
 }

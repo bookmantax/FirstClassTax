@@ -14,7 +14,6 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TextView;
 
 /**
- * Created by unlimited_power on 6/9/16.
  *
  * Example from : http://handtostandincordingfromisuruudith.blogspot.com/2015/12/calculate-speed-from-gps-location.html
  *

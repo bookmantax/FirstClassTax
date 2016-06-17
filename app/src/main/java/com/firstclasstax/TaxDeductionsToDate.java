@@ -12,9 +12,6 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
-/**
- * Created by RAE on 3/30/16.
- */
 public class TaxDeductionsToDate extends AppCompatActivity implements View.OnClickListener{
 
     TextView deductionsToDate;

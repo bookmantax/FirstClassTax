@@ -2,11 +2,6 @@ package com.firstclasstax;
 
 import android.location.Location;
 
-/**
- * Created by unlimited_power on 6/9/16.
- */
-
-
 public class Speed_CLocation extends Location {
 
     private boolean bUseMetricUnits = false;

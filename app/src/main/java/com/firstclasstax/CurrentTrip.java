@@ -10,9 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-/**
- * Created by RAE on 3/30/16.
- */
 public class CurrentTrip extends AppCompatActivity implements View.OnClickListener{
 
 

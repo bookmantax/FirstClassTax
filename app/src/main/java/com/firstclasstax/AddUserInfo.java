@@ -5,20 +5,21 @@
 package com.firstclasstax;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-/**
- * Created by RAE on 3/30/16.
- */
-
-// TODO: Create a new layout for address with autocomplete and form validation,
-// TODO: http://stacktips.com/tutorials/android/editText-validation-in-android-example
-// TODO: Launch UserAddress when click on Address EditText
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.places.AutocompleteFilter;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
+import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 
 public class AddUserInfo extends AppCompatActivity implements View.OnClickListener{
 

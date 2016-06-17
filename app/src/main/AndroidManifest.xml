@@ -6,8 +6,6 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
         android:allowBackup="true"
@@ -15,7 +13,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
 
         <activity
             android:name=".SplashScreen"
@@ -142,7 +139,6 @@
             </intent-filter>
         </activity>
 
-
         // New Activity AddTrip
         <activity
             android:name=".AddNewTrip"
@@ -154,7 +150,7 @@
             </intent-filter>
         </activity>
 
-        // New Activity AddTrip
+        // New Activity SpeedManager
         <activity
             android:name=".SpeedManager"
             android:theme="@style/AppTheme">
@@ -164,8 +160,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-        // New Activity DepartingDate
 
         <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
@@ -177,7 +171,5 @@
             android:value="AIzaSyBGuGniN3Ubhj43EpNgmu87HUEEMlMHBL0"/>
 
         <service android:name=".LocationService" android:process=":location_service"/>
-
-
     </application>
 </manifest>

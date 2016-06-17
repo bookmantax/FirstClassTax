@@ -10,17 +10,6 @@ import android.widget.EditText;
 
 import java.util.Calendar;
 
-/**
- * Program Name : Petrec
- * Created by Rodrigo Escobar on 4/24/2016 @ 07:31 pm EST.
- * Assignment # : Final
- *
- * Updated on 05/1/2016 @ 10:45 pm EST.
- *
- * This class is created to handle a better formated date picker.
- */
-
-
 public class DateDialog extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
 

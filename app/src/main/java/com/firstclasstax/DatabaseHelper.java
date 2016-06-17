@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -92,6 +93,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String PER_DIEM_TABLE_NAME = "per_diem_table";
     private static final String TRIP_HISTORY_TABLE_NAME = "trip_history_table";
     private static final int DATABASE_VERSION = 1;
+
+    // Other Variables
+    int perDiem;
 
     // On Create Method
     @Override
@@ -266,18 +270,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result != -1;
     } // end of insertData
 
-//    /*
-// * Add data to the DataBase
-// */
-//    public boolean insertAddress(String address) {
-//        SQLiteDatabase db = this.getReadableDatabase();
-//        ContentValues contentValues = new ContentValues();
-//        contentValues.put(ADDRESS, address);
-//        // to check if data was inserted
-//        long result = db.insert(USER_TABLE_NAME, null, contentValues);
-//        return result != -1;
-//    } // end of insertData
-
     /*
     * Add trip to the Database
     */
@@ -305,30 +297,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     /*
      * Pulls all data from the DataBase table. and assign it to the variable result
      */
-    public Cursor getAirportsInfo(String searchValue) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor result = db.rawQuery("SELECT * FROM " + AIRPORTS_TABLE_NAME + " WHERE AIRPORT_CITY LIKE '" + searchValue + "%'", null);
-        return result;
-    } // End of getAirportsInfo
-//    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//	/*
-//     * Pulls all cities from the DataBase Airports table. and assign it to the variable result
-//     */
-//    public Cursor getAirportsCity() {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        Cursor result = db.rawQuery("SELECT * FROM " + AIRPORTS_TABLE_NAME + " WHERE AIRPORT_CITY", null);
-//        return result;
-//    } // End of getAirportsInfo
-//    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    /*
-     * Pulls all data from the DataBase table. and assign it to the variable result
-     */
     public Cursor getAllTrips() {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor result = db.rawQuery("select * from " + TRIP_HISTORY_TABLE_NAME, null);
         return result;
-    } // End of getAllTrips
+    } // End of getAllData
 
     /*
         * Check if a table is empty and return a int
@@ -386,6 +359,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return total;
     }
 
+    public int getPerDiemByCountry(String country){
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("Select PER_DIEM_PER_DIEM from " + PER_DIEM_TABLE_NAME
+                + " where PER_DIEM_COUNTRY = '" + country + "'", null);
+        if(cursor.getCount() > 0){
+            cursor.moveToFirst();
+            return cursor.getInt(cursor.getColumnIndex("PER_DIEM_PER_DIEM"));
+        }
+        return 0;
+    }
+
+    public int getPerDiemBySate(String state){
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("Select PER_DIEM_PER_DIEM from " + PER_DIEM_TABLE_NAME
+                + " where PER_DIEM_STATE = '" + state + "'", null);
+        if(cursor.getCount() > 0){
+            cursor.moveToFirst();
+            return cursor.getInt(cursor.getColumnIndex("PER_DIEM_PER_DIEM"));
+        }
+        return 0;
+    }
+
     public int getPerDiemByCity(String city){
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("Select PER_DIEM_PER_DIEM from " + PER_DIEM_TABLE_NAME
@@ -396,26 +391,70 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return 0;
     }
+    public Double getMealsByCountry(String country){
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("Select PER_DIEM_PER_DIEM from " + PER_DIEM_TABLE_NAME
+                + " where PER_DIEM_MEALS_AND_INCIDENTALS = '" + country + "'", null);
+        if(cursor.getCount() > 0){
+            cursor.moveToFirst();
+            return cursor.getDouble(cursor.getColumnIndex("PER_DIEM_MEALS_AND_INCIDENTALS"));
+        }
+        return 0.0;
+    }
 
-    public boolean updateUserData(String name, String address, String airline, String base, String email, String phone) {
+    public Double getMealsBySate(String state){
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("Select PER_DIEM_MEALS_AND_INCIDENTALS from " + PER_DIEM_TABLE_NAME
+                + " where PER_DIEM_MEALS_AND_INCIDENTALS = '" + state + "'", null);
+        if(cursor.getCount() > 0){
+            cursor.moveToFirst();
+            return cursor.getDouble(cursor.getColumnIndex("PER_DIEM_MEALS_AND_INCIDENTALS"));
+        }
+        return 0.0;
+    }
 
-        int _id = 1;
+    public Double getMealsByCity(String city){
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("Select PER_DIEM_MEALS_AND_INCIDENTALS from " + PER_DIEM_TABLE_NAME
+                + " where PER_DIEM_MEALS_AND_INCIDENTALS = '" + city + "'", null);
+        if(cursor.getCount() > 0){
+            cursor.moveToFirst();
+            return cursor.getDouble(cursor.getColumnIndex("PER_DIEM_MEALS_AND_INCIDENTALS"));
+        }
+        return 0.0;
+    }
 
-        String[] args = {String.valueOf(_id)};
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(_ID, _id);
-        contentValues.put(NAME, name);
-        contentValues.put(ADDRESS, address);
-        contentValues.put(AIRLINE, airline);
-        contentValues.put(BASE, base);
-        contentValues.put(EMAIL, email);
-        contentValues.put(PHONE, phone);
-        db.update(USER_TABLE_NAME, contentValues, "_ID=?", args);
-        Cursor userCursor = getAllData();
-        userCursor.requery();
-        return true;
+    public Double getLodgingByCountry(String country){
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("Select PER_DIEM_MEALS_AND_INCIDENTALS from " + PER_DIEM_TABLE_NAME
+                + " where PER_DIEM_MEALS_AND_INCIDENTALS = '" + country + "'", null);
+        if(cursor.getCount() > 0){
+            cursor.moveToFirst();
+            return cursor.getDouble(cursor.getColumnIndex("PER_DIEM_MEALS_AND_INCIDENTALS"));
+        }
+        return 0.0;
+    }
 
+    public Double getLodgingBySate(String state){
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("Select PER_DIEM_LODGING from " + PER_DIEM_TABLE_NAME
+                + " where PER_DIEM_LODGING = '" + state + "'", null);
+        if(cursor.getCount() > 0){
+            cursor.moveToFirst();
+            return cursor.getDouble(cursor.getColumnIndex("PER_DIEM_LODGING"));
+        }
+        return 0.0;
+    }
+
+    public Double getLodgingByCity(String city){
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("Select PER_DIEM_LODGING from " + PER_DIEM_TABLE_NAME
+                + " where PER_DIEM_LODGING = '" + city + "'", null);
+        if(cursor.getCount() > 0){
+            cursor.moveToFirst();
+            return cursor.getDouble(cursor.getColumnIndex("PER_DIEM_LODGING"));
+        }
+        return 0.0;
     }
 
 }

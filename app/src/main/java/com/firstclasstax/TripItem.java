@@ -1,8 +1,5 @@
 package com.firstclasstax;
 
-/**
- * Created by Brandon on 5/27/2016.
- */
 public class TripItem {
     public final String location;
     public final String dates;

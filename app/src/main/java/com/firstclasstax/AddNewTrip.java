@@ -21,9 +21,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-/**
- * Created by Brandon on 5/23/2016.
- */
 public class AddNewTrip extends AppCompatActivity {
 
     private static Button button_sbm;

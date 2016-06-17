@@ -6,15 +6,15 @@ package com.firstclasstax;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.TextView;
+import android.widget.ExpandableListView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.Status;
@@ -22,30 +22,19 @@ import com.google.android.gms.location.places.AutocompleteFilter;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
-import com.google.android.gms.location.places.ui.SupportPlaceAutocompleteFragment;
 
-/**
- * Created by RAE on 3/30/16.
- */
-public class EditUserInfo extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
+public class EditUserInfo extends AppCompatActivity implements View.OnClickListener{
 
 
     // Variables
     private static Button button_sbm;
     DatabaseHelper db = new DatabaseHelper(this);
     EditText edit_Name_EditText, edit_Address_EditText, edit_Employer_EditText, edit_Base_EditText,
-            edit_Email_EditText, edit_Phone_EditText ;
-    String selectedCity;
-    PlaceAutocompleteFragment autocompleteFragment;
-    int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
+             edit_Email_EditText, edit_Phone_EditText ;
     public static final String TAG = PerDiemSearch.class.getSimpleName();
     Cursor cursor;
     int pos;
     private final String USER_TABLE_NAME = "user_info_table";
-    // SPINNER VARIABLES
-    Spinner spinner;
-    String[] airportCitiesArray;
-    Cursor aiportCitiesCusor;
 
 
     @Override
@@ -66,75 +55,38 @@ public class EditUserInfo extends AppCompatActivity implements View.OnClickListe
         edit_Email_EditText = (EditText) findViewById(R.id.edit_Email_EditText);
         edit_Phone_EditText = (EditText) findViewById(R.id.edit_Phone_EditText);
 
-        if (!db.isEmpty(USER_TABLE_NAME)) {
+        if(!db.isEmpty(USER_TABLE_NAME)) {
             cursor = db.getAllData();
-            if (cursor != null) {
+            if(cursor != null) {
                 cursor.moveToFirst();
                 pos = cursor.getColumnIndex("NAME");
-                if (pos != -1) {
+                if(pos != -1){
                     edit_Name_EditText.setText(cursor.getString(pos));
                 }
                 pos = cursor.getColumnIndex("ADDRESS");
-                if (pos != -1) {
+                if(pos != -1){
                     edit_Address_EditText.setText(cursor.getString(pos));
                 }
                 pos = cursor.getColumnIndex("AIRLINE");
-                if (pos != -1) {
+                if(pos != -1){
                     edit_Employer_EditText.setText(cursor.getString(pos));
                 }
                 pos = cursor.getColumnIndex("BASE");
-                if (pos != -1) {
+                if(pos != -1){
                     edit_Base_EditText.setText(cursor.getString(pos));
                 }
                 pos = cursor.getColumnIndex("EMAIL");
-                if (pos != -1) {
+                if(pos != -1){
                     edit_Email_EditText.setText(cursor.getString(pos));
                 }
                 pos = cursor.getColumnIndex("PHONE");
-                if (pos != -1) {
+                if(pos != -1){
                     edit_Phone_EditText.setText(cursor.getString(pos));
                 }
             }
         }
-
-        //TODO: Replace edit_base_EditText value with selected autocomplete fragment
-        /////////////////////////////////// AUTOCOMPLETE ///////////////////////////////////////////
-        autocompleteFragment = (PlaceAutocompleteFragment)
-                getFragmentManager().findFragmentById(R.id.edit_Base_Fragment);
-
-        /*
-        * The following code example shows setting an AutocompleteFilter on a PlaceAutocompleteFragment to
-        * set a filter returning only results with a precise address.
-        */
-        AutocompleteFilter typeFilter = new AutocompleteFilter.Builder()
-                .setTypeFilter(AutocompleteFilter.TYPE_FILTER_CITIES)
-                .build();
-        autocompleteFragment.setFilter(typeFilter);
-
-        SupportPlaceAutocompleteFragment autocompleteFragment
-                = (SupportPlaceAutocompleteFragment)
-                getSupportFragmentManager().findFragmentById(R.id.edit_Base_Fragment);
-
-        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
-            @Override
-            public void onPlaceSelected(Place place) {
-                // TODO: Get info about the selected place.
-                Log.i(TAG, "Place: " + place.getName());//get place details here
-                selectedCity = place.getName().toString();
-
-                edit_Base_EditText.setText(selectedCity);
-            }
-
-            @Override
-            public void onError(Status status) {
-                // TODO: Handle the error.
-                Log.i(TAG, "An error occurred: " + status);
-            }
-        }
-        );
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////
 
     @Override
     public void onClick(View v) {
@@ -147,6 +99,8 @@ public class EditUserInfo extends AppCompatActivity implements View.OnClickListe
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
+
                         // Call of the method Validate to check if EditText are empty
                         boolean fieldsOK = validate(new EditText[]{
                                 edit_Name_EditText,
@@ -157,7 +111,7 @@ public class EditUserInfo extends AppCompatActivity implements View.OnClickListe
                                 edit_Phone_EditText});
                         if (fieldsOK == true) {
 
-                            boolean isInserted = db.updateUserData(
+                            boolean isInserted = db.insertData(
                                     edit_Name_EditText.getText().toString(),
                                     edit_Address_EditText.getText().toString(),
                                     edit_Employer_EditText.getText().toString(),
@@ -215,36 +169,43 @@ public class EditUserInfo extends AppCompatActivity implements View.OnClickListe
                 }
         );
     }
-
+/*
+    // Options menu to shout about info
     @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        TextView myText = (TextView) view;
-        this.selectedCity = (String) myText.getText();
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add(Menu.NONE, ABOUT, Menu.NONE, "About")
+                .setIcon(R.drawable.add)
+                .setAlphabeticShortcut('a');
+        return (super.onCreateOptionsMenu(menu));
     }
 
     @Override
-    public void onNothingSelected(AdapterView<?> parent) {
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case ABOUT:
+                add();
+                return (true);
+        }
 
+        return (super.onOptionsItemSelected(item));
     }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-//TODO: Create a spinner with the airports cities from the database
-//        aiportCitiesCusor = db.getAirportsCity();
-//        airportCitiesArray = new String[aiportCitiesCusor.getCount()];
-//        aiportCitiesCusor.moveToFirst();
-//        int j = aiportCitiesCusor.getCount() + 1;
-//        if (cursor != null)
-//            for (int i = 0; i < j; i++) {
-//                airportCitiesArray[i] = aiportCitiesCusor.getString(i);
-//                aiportCitiesCusor.moveToNext();
-//            }
-//
-//        spinner = new Spinner(this);
-//        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, airportCitiesArray); //selected item will look like a spinner set from XML
-//        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        spinner.setAdapter(spinnerArrayAdapter);
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
+    private void add() {
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View addView = inflater.inflate(R.layout.about, null);
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.about)
+                .setView(addView)
+                .setNegativeButton(R.string.close,
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,
+                                                int whichButton) {
+                                // ignore, just dismiss
+                            }
+                        })
+                .show();
+    }
+*/
 }
 
 

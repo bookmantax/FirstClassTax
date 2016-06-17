@@ -21,9 +21,6 @@ import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 
-/**
- * Created by RAE on 3/30/16.
- */
 public class PerDiemSearch extends AppCompatActivity implements View.OnClickListener{
 
     int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;

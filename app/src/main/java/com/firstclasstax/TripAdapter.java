@@ -11,9 +11,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-/**
- * Created by Brandon on 5/27/2016.
- */
 public class TripAdapter extends ArrayAdapter<TripItem> {
     final Context context;
     final int layoutResourceId;

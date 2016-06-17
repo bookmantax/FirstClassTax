@@ -10,9 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-/**
- * Created by Brandon on 5/21/16.
- */
 public class DepartingDate extends AppCompatActivity implements View.OnClickListener{
 
 

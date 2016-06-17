@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<instant-run
+    abi="arm64-v8a,armeabi-v7a,armeabi"
+    api-level="23"
+    density="xxhdpi"
+    format="7"
+    timestamp="12722699904986"
+    token="-8573880721718509572" >
+
+    <task
+        name="javac"
+        duration="170" />
+    <task
+        name="instant-run-dex"
+        duration="0" />
+    <task
+        name="instant-run-transform"
+        duration="10" />
+    <task
+        name="verifier"
+        duration="1" />
+
+    <artifact
+        location="/home/unlimited_power/workspace/FTC-Development/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_2/classes.dex"
+        type="DEX" />
+
+    <build timestamp="10653688651231" >
+        <artifact
+            location="/home/unlimited_power/workspace/FTC-Development/app/build/outputs/apk/app-debug.apk"
+            type="MAIN" />
+    </build>
+    <build timestamp="10746878643945" >
+        <artifact
+            location="/home/unlimited_power/workspace/FTC-Development/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tasks-9.0.0_b343289c54a751a3d7bbcaa471907c7c8e1b976f/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/home/unlimited_power/workspace/FTC-Development/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-23.3.0_4204724883fd00495ad9ee433ddbe7eee1da8212/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/home/unlimited_power/workspace/FTC-Development/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-common-9.0.0_1c07c188cf12af3a6991b157ef7bff4e136ef422/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/home/unlimited_power/workspace/FTC-Development/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-maps-9.0.0_ed3d59b946bf9a802112a16e0bda68c60dd7fbb6/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/home/unlimited_power/workspace/FTC-Development/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.3.0_7e66758228b4ecae48cdbd9846ebd3e26307c34b/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/home/unlimited_power/workspace/FTC-Development/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-basement-9.0.0_f7144ed179f83fbb9742aab8d579c8d080f42894/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/home/unlimited_power/workspace/FTC-Development/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.3.0_409d71a5aac7da9a818b28c0b5acc63510d3c0fc/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/home/unlimited_power/workspace/FTC-Development/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-appindexing-9.0.0_d6ad3046d0e086c8c70bc55f2499c4845be25804/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/home/unlimited_power/workspace/FTC-Development/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-23.3.0_e391c036e4d3d80bf6eb9d69bd3e022c99691a49/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/home/unlimited_power/workspace/FTC-Development/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-base-9.0.0_7b2c654b32b40be3d88c4806852d67ac6410620d/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/home/unlimited_power/workspace/FTC-Development/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-location-9.0.0_4df80f49f562a664ee4c9ab678706b1b77ac9cff/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/home/unlimited_power/workspace/FTC-Development/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_1/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/home/unlimited_power/workspace/FTC-Development/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.3.0_4b098f05b19f7693d44cc1937b3d628226a677d1/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/home/unlimited_power/workspace/FTC-Development/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_b64e10bac2e4b3131870c4178630e90e7779096b/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/home/unlimited_power/workspace/FTC-Development/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_0/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/home/unlimited_power/workspace/FTC-Development/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_c7b5a0ed2b349fb001cc01be4aa4eb6398f11066/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/home/unlimited_power/workspace/FTC-Development/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.3.0_9b1d0eaa83b2c73c50816d1879b08197f076ec40/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/home/unlimited_power/workspace/FTC-Development/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_7/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/home/unlimited_power/workspace/FTC-Development/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_9/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/home/unlimited_power/workspace/FTC-Development/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_8/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/home/unlimited_power/workspace/FTC-Development/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_6/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/home/unlimited_power/workspace/FTC-Development/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_5/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/home/unlimited_power/workspace/FTC-Development/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_3/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/home/unlimited_power/workspace/FTC-Development/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_4/classes.dex"
+            type="DEX" />
+    </build>
+    <build timestamp="12722699904986" >
+        <artifact
+            location="/home/unlimited_power/workspace/FTC-Development/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_2/classes.dex"
+            type="DEX" />
+    </build>
+
+</instant-run>

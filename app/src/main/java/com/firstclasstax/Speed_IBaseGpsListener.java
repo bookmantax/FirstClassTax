@@ -5,9 +5,6 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
 
-/**
- * Created by unlimited_power on 6/9/16.
- */
 public interface Speed_IBaseGpsListener extends LocationListener, GpsStatus.Listener {
 
     public void onLocationChanged(Location location);
